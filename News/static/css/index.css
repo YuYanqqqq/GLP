@@ -1,0 +1,203 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', 'Microsoft YaHei', '微软雅黑', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #e3d9ff, #f8f7fc);
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* 导航栏样式 */
+.navbar {
+    background: linear-gradient(135deg, #8e44ad, #6c38d8);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    padding: 15px 250px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    border-radius: 0 0 15px 15px;
+}
+
+.title {
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.title:hover {
+    color: #f4e1ff;
+}
+
+/* 布局容器 */
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* 上部分区域 */
+.top-section {
+    background: linear-gradient(135deg, #f3e5ff, #e9e1ff);
+    flex: 25%;
+    text-align: center;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.top-section h1 {
+    font-size: 2.8rem;
+    color: #6c38d8;
+    margin-bottom: 30px;
+    max-width: 800px;
+    text-shadow: 2px 2px 8px rgba(140, 107, 230, 0.5);
+}
+
+.top-section p {
+    font-size: 1.3rem;
+    color: #555;
+    margin-top: 20px;
+}
+
+/* 按钮样式 */
+.btn {
+    background: linear-gradient(135deg, #8c6be6, #6c38d8);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(140, 107, 230, 0.4);
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #7452d8, #5722cc);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(140, 107, 230, 0.5);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* 输入框和表单元素样式 */
+.index_ModelSelect, .index_Question {
+    padding: 14px 18px;
+    border: 2px solid #d1b3ff;
+    border-radius: 10px;
+    background: white;
+    color: #444;
+    font-size: 16px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 400px;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.index_ModelSelect:hover, .index_Question:hover {
+    border-color: #b197fc;
+    box-shadow: 0 0 10px rgba(140, 107, 230, 0.4);
+}
+
+.index_ModelSelect:focus, .index_Question:focus {
+    border-color: #8c6be6;
+    box-shadow: 0 0 12px rgba(140, 107, 230, 0.5);
+}
+
+/* 卡片样式 */
+.carddiy {
+    background: linear-gradient(135deg, #fdfbff, #ebe1ff);
+    border-radius: 18px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 250px;
+    width: 60%;
+    margin-top: 3%;
+    position: relative;
+    cursor: pointer;
+    padding: 20px;
+}
+
+.carddiy:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.carddiy h6 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #6c38d8;
+    padding-bottom: 10px;
+}
+
+.carddiy p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.7;
+}
+
+/* 响应式布局 */
+@media (max-width: 1200px) {
+    .navbar {
+        padding: 15px 100px;
+    }
+    .carddiy {
+        width: 80%;
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar {
+        padding: 15px 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 20px;
+    }
+}
+.bottom-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.bottom-top, .bottom-bottom {
+    display: flex;
+    gap: 2%;
+    justify-content: center;
+    width: 100%;
+    max-width: 900px; /* 让内容不会太靠边 */
+    margin: 20px 0;
+}
+
+.carddiy {
+    width: 48%; /* 让两列对称 */
+    min-width: 250px; /* 避免内容太窄 */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+}

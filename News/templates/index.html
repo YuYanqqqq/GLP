@@ -1,0 +1,174 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文心小课堂</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+</head>
+<body>
+    <!-- 导航栏 -->
+    <div class="navbar">
+        <a href="./" class="title">
+          <strong>文心小课堂</strong>
+        </a>
+    </div>
+
+    <div class="container">
+        <!-- 上部分 -->
+      <div class="top-section">
+
+        <h1 style="font-family:'黑体';font-size: 40px;">
+            新一代交互式知识学习引擎
+        </h1>
+        <form style="margin-top: 3%;" onsubmit="return false;" >
+            <div style="display: flex; justify-content: center;">
+                <div style="display: flex; justify-content: center; align-items: center;">
+                  <!-- 选项框位置 -->
+
+                  <select id="modelSelect" class="index_ModelSelect">
+                      <option value="ernie-3.5-8k">ernie-3.5-8k</option>
+                      <option value="ernie-4.5-8k-preview">ernie-4.5-8k-preview</option>
+                      <option value="ernie-4.0-8k">ernie-4.0-8k</option>
+                      <option value="deepseek-v3">deepseek-v3</option>
+                  </select>
+
+
+                  <input id="question" class="index_Question" placeholder="请输入您的问题">
+                  <button class="btn" onclick="submitQuestion(this)">
+                    开始学习
+                  </button>
+                </div>
+            </div>
+        </form>
+        <p>
+            尝试输入"机器学习"等你要学习的关键词
+        </p>
+       </div>
+
+      <!-- 下部分 -->
+      <div id="section" class="bottom-section" style="display: none;"><!-- 子元素按照垂直方向向下排序 -->
+        <!-- 下方-----上半部分 -->
+        <div class="bottom-top">
+            <!-- 左上分区 -->
+            <div style="flex: 50%;">
+                <a style="color: rgb(83, 83, 83); cursor: pointer;"  onclick="sendDataToModPage('title-box1', 'content-box1');">
+                    <div class="carddiy">
+                      <div class="top">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="svg2" height="1em" viewBox="0 0 576 512">
+                          <path d="M386.539 111.485l15.096 248.955-10.979-.275c-36.232-.824-71.64 8.783-102.657 27.997-31.016-19.214-66.424-27.997-102.657-27.997-45.564 0-82.07 10.705-123.516 27.723L93.117 129.6c28.546-11.803 61.484-18.115 92.226-18.115 41.173 0 73.836 13.175 102.657 42.544 27.723-28.271 59.013-41.721 98.539-42.544zM569.07 448c-25.526 0-47.485-5.215-70.542-15.645-34.31-15.645-69.993-24.978-107.871-24.978-38.977 0-74.934 12.901-102.657 40.623-27.723-27.723-63.68-40.623-102.657-40.623-37.878 0-73.561 9.333-107.871 24.978C55.239 442.236 32.731 448 8.303 448H6.93L49.475 98.859C88.726 76.626 136.486 64 181.775 64 218.83 64 256.984 71.685 288 93.095 319.016 71.685 357.17 64 394.225 64c45.289 0 93.049 12.626 132.3 34.859L569.07 448zm-43.368-44.741l-34.036-280.246c-30.742-13.999-67.248-21.41-101.009-21.41-38.428 0-74.385 12.077-102.657 38.702-28.272-26.625-64.228-38.702-102.657-38.702-33.761 0-70.267 7.411-101.009 21.41L50.298 403.259c47.211-19.487 82.894-33.486 135.045-33.486 37.604 0 70.817 9.606 102.657 29.644 31.84-20.038 65.052-29.644 102.657-29.644 52.151 0 87.834 13.999 135.045 33.486z"/>
+                        </svg>
+                      </div>
+                      <div style="text-align: left; padding-left: 10px; margin: 0; margin-top: 3%;">
+                        <h6 class="bottom" id="title-box1"></h6>
+                        <p id="content-box1"></p>
+                      </div>
+                    </div>
+                  </a>
+            </div>
+            <!-- 右上分区 -->
+            <div style="flex: 50%;">
+                <a style="color: rgb(83, 83, 83); cursor: pointer;"  onclick="sendDataToModPage('title-box2', 'content-box2');">
+                    <div class="carddiy">
+                      <div class="top">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="svg2" height="1em" viewBox="0 0 576 512">
+                          <path d="M386.539 111.485l15.096 248.955-10.979-.275c-36.232-.824-71.64 8.783-102.657 27.997-31.016-19.214-66.424-27.997-102.657-27.997-45.564 0-82.07 10.705-123.516 27.723L93.117 129.6c28.546-11.803 61.484-18.115 92.226-18.115 41.173 0 73.836 13.175 102.657 42.544 27.723-28.271 59.013-41.721 98.539-42.544zM569.07 448c-25.526 0-47.485-5.215-70.542-15.645-34.31-15.645-69.993-24.978-107.871-24.978-38.977 0-74.934 12.901-102.657 40.623-27.723-27.723-63.68-40.623-102.657-40.623-37.878 0-73.561 9.333-107.871 24.978C55.239 442.236 32.731 448 8.303 448H6.93L49.475 98.859C88.726 76.626 136.486 64 181.775 64 218.83 64 256.984 71.685 288 93.095 319.016 71.685 357.17 64 394.225 64c45.289 0 93.049 12.626 132.3 34.859L569.07 448zm-43.368-44.741l-34.036-280.246c-30.742-13.999-67.248-21.41-101.009-21.41-38.428 0-74.385 12.077-102.657 38.702-28.272-26.625-64.228-38.702-102.657-38.702-33.761 0-70.267 7.411-101.009 21.41L50.298 403.259c47.211-19.487 82.894-33.486 135.045-33.486 37.604 0 70.817 9.606 102.657 29.644 31.84-20.038 65.052-29.644 102.657-29.644 52.151 0 87.834 13.999 135.045 33.486z"/>
+                        </svg>
+                      </div>
+                      <div style="text-align: left; padding-left: 10px; margin: 0; margin-top: 3%;">
+                        <h6 class="bottom" id="title-box2"></h6>
+                        <p id="content-box2"></p>
+                      </div>
+                    </div>
+                  </a>
+            </div>
+        </div>
+
+        <!-- 下方-----下半部分 -->
+        <div class="bottom-bottom">
+            <!-- 左下分区 -->
+            <div style="flex: 50%;">
+                <a style="color: rgb(83, 83, 83); cursor: pointer;"  onclick="sendDataToModPage('title-box3', 'content-box3');">
+                    <div class="carddiy">
+                      <div class="top">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="svg2" height="1em" viewBox="0 0 576 512">
+                          <path d="M386.539 111.485l15.096 248.955-10.979-.275c-36.232-.824-71.64 8.783-102.657 27.997-31.016-19.214-66.424-27.997-102.657-27.997-45.564 0-82.07 10.705-123.516 27.723L93.117 129.6c28.546-11.803 61.484-18.115 92.226-18.115 41.173 0 73.836 13.175 102.657 42.544 27.723-28.271 59.013-41.721 98.539-42.544zM569.07 448c-25.526 0-47.485-5.215-70.542-15.645-34.31-15.645-69.993-24.978-107.871-24.978-38.977 0-74.934 12.901-102.657 40.623-27.723-27.723-63.68-40.623-102.657-40.623-37.878 0-73.561 9.333-107.871 24.978C55.239 442.236 32.731 448 8.303 448H6.93L49.475 98.859C88.726 76.626 136.486 64 181.775 64 218.83 64 256.984 71.685 288 93.095 319.016 71.685 357.17 64 394.225 64c45.289 0 93.049 12.626 132.3 34.859L569.07 448zm-43.368-44.741l-34.036-280.246c-30.742-13.999-67.248-21.41-101.009-21.41-38.428 0-74.385 12.077-102.657 38.702-28.272-26.625-64.228-38.702-102.657-38.702-33.761 0-70.267 7.411-101.009 21.41L50.298 403.259c47.211-19.487 82.894-33.486 135.045-33.486 37.604 0 70.817 9.606 102.657 29.644 31.84-20.038 65.052-29.644 102.657-29.644 52.151 0 87.834 13.999 135.045 33.486z"/>
+                        </svg>
+                      </div>
+                      <div style="text-align: left; padding-left: 10px; margin: 0; margin-top: 3%;">
+                        <h6 id="title-box3"></h6>
+                        <p id="content-box3"></p>
+                      </div>
+                    </div>
+                  </a>
+            </div>
+            <!-- 右下分区 -->
+            <div style="flex: 50%;">
+                <a style="color: rgb(83, 83, 83); cursor: pointer;"  onclick="sendDataToModPage('title-box4', 'content-box4');">
+                    <div class="carddiy">
+                      <div class="top">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="svg2" height="1em" viewBox="0 0 576 512">
+                          <path d="M386.539 111.485l15.096 248.955-10.979-.275c-36.232-.824-71.64 8.783-102.657 27.997-31.016-19.214-66.424-27.997-102.657-27.997-45.564 0-82.07 10.705-123.516 27.723L93.117 129.6c28.546-11.803 61.484-18.115 92.226-18.115 41.173 0 73.836 13.175 102.657 42.544 27.723-28.271 59.013-41.721 98.539-42.544zM569.07 448c-25.526 0-47.485-5.215-70.542-15.645-34.31-15.645-69.993-24.978-107.871-24.978-38.977 0-74.934 12.901-102.657 40.623-27.723-27.723-63.68-40.623-102.657-40.623-37.878 0-73.561 9.333-107.871 24.978C55.239 442.236 32.731 448 8.303 448H6.93L49.475 98.859C88.726 76.626 136.486 64 181.775 64 218.83 64 256.984 71.685 288 93.095 319.016 71.685 357.17 64 394.225 64c45.289 0 93.049 12.626 132.3 34.859L569.07 448zm-43.368-44.741l-34.036-280.246c-30.742-13.999-67.248-21.41-101.009-21.41-38.428 0-74.385 12.077-102.657 38.702-28.272-26.625-64.228-38.702-102.657-38.702-33.761 0-70.267 7.411-101.009 21.41L50.298 403.259c47.211-19.487 82.894-33.486 135.045-33.486 37.604 0 70.817 9.606 102.657 29.644 31.84-20.038 65.052-29.644 102.657-29.644 52.151 0 87.834 13.999 135.045 33.486z"/>
+                        </svg>
+                      </div>
+                      <div style="text-align: left; padding-left: 10px; margin: 0; margin-top: 3%;">
+                        <h6 class="bottom" id="title-box4"></h6>
+                        <p id="content-box4"></p>
+                      </div>
+                    </div>
+                  </a>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+        let question = "";
+        function submitQuestion(buttonElement) {
+            const questionInput = document.getElementById('question').value.trim(); // 去除输入内容的前后空格
+            const modelSelect = document.getElementById('modelSelect').value; // 获取选中的模型名称
+            if (questionInput === "") {
+                return; // 如果输入为空，不执行后续操作
+            }
+            // 禁用按钮，并更改文本以表示正在加载
+            buttonElement.innerText = '正在加载...';
+            buttonElement.disabled = true;
+            // 将问题赋值给 question 变量
+            question = questionInput;
+            fetch(`/ask?question=${encodeURIComponent(question)}&model=${encodeURIComponent(modelSelect)}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    const moduleTitles = [];
+                    const moduleContents = [];
+                    const sectionElement = document.getElementById("mySection");
+                    for (let i = 0; i < data.length; i++) {
+                        let moduleTitle = data[i]["模块主题"];
+                        let moduleContent = data[i]["本模块内容简介"];
+                        moduleTitles.push(moduleTitle);
+                        moduleContents.push(moduleContent);
+                        document.getElementById(`title-box${i + 1}`).innerText = moduleTitle;
+                        document.getElementById(`content-box${i + 1}`).innerText = moduleContent;
+                        const section = document.getElementById("section");
+                        section.style.display = "flex";
+                    }
+                    // 恢复按钮状态
+                    buttonElement.innerText = '开始学习';
+                    buttonElement.disabled = false;
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    // 恢复按钮状态
+                    buttonElement.innerText = '开始学习';
+                    buttonElement.disabled = false;
+                });
+        }
+    </script>
+
+</body>
+</html>
+
+
